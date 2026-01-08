@@ -290,11 +290,21 @@ document.getElementById("content").addEventListener("click", function () {
         document.getElementById("sidebar").classList.remove("active");
     }
 });
+
+/* Tutup sidebar saat klik menu sidebar */
+function closeSidebarMobile() {
+    if (window.innerWidth <= 768) {
+        document.getElementById("sidebar").classList.remove("active");
+    }
+}
 </script>
+
+
 
 
 </body>
 </html>
+
 
 
 
