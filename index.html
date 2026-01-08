@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Absen Siswa | E-Learning</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #3740ff, #7b3cff);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+    }
+
+    .welcome {
+        position: absolute;
+        top: 35px;
+        font-size: 22px;
+        font-weight: 600;
+        width: 100%;
+        animation: fadeIn 1.2s ease;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .container {
+    width: 420px;
+    padding: 35px 45px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    animation: fadeIn 1s ease;
+    margin-top: 150px; /* ⬅ Geser ke bawah */
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    h2 {
+        margin-bottom: 10px;
+        font-size: 26px;
+    }
+
+    p {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 20px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 14px;
+        margin-top: 14px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        font-size: 15px;
+        background: rgba(255,255,255,0.25);
+        color: white;
+    }
+
+    input::placeholder {
+        color: #ececec;
+    }
+
+    input[type="file"] {
+        padding: 10px;
+        background: rgba(255,255,255,0.18);
+        cursor: pointer;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px;
+        background: #3740ff;
+        border: none;
+        border-radius: 10px;
+        margin-top: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: #4254e6;
+    }
+
+    #message {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #ffdfdf;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="welcome">
+    Form Absensi Siswa <br>
+</div>
+
+<div class="container">
+    <h2>Absen Kehadiran</h2>
+    <p>Isi data dengan benar dan unggah bukti kehadiran</p>
+
+    <input type="text" id="nama" placeholder="Nama Lengkap">
+    <input type="text" id="nis" placeholder="NIS">
+
+    <select id="kelas">
+        <option value="">Pilih Kelas</option>
+        <option>Kelas 10</option>
+        <option>Kelas 11</option>
+        <option>Kelas 12</option>
+    </select>
+
+    <select id="semester">
+        <option value="">Pilih Semester</option>
+        <option>Semester 1</option>
+        <option>Semester 2</option>
+    </select>
+
+    <select id="pertemuan">
+    <option value="">Pilih Pertemuan</option>
+    <option value="1">Pertemuan 1</option>
+    <option value="2">Pertemuan 2</option>
+    <option value="3">Pertemuan 3</option>
+    </select>
+
+
+    <input type="file" id="foto" accept="image/*">
+
+    <button class="btn" onclick="kirimAbsen()">Kirim Absen</button>
+
+    <p id="message"></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const { createClient } = window.supabase;
+
+const sb = createClient(
+  "https://bopnfzawqdtwnpurobky.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvcG5memF3cWR0d25wdXJvYmt5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc1MzQ3NDQsImV4cCI6MjA4MzExMDc0NH0.arNHH2dEzc1pLP0BfE_QQWoNvxxt7nntPcTN9e-_opU"
+);
+
+async function kirimAbsen() {
+  const nama = document.getElementById("nama").value;
+  const nis = document.getElementById("nis").value;
+  const kelas = document.getElementById("kelas").value;
+  const semester = document.getElementById("semester").value;
+  const pertemuan = document.getElementById("pertemuan").value;
+  const foto = document.getElementById("foto").files[0];
+  const message = document.getElementById("message");
+
+  if (!nama || !nis || !kelas || !semester || !pertemuan || !foto) {
+    message.textContent = "⚠️ Semua data dan foto wajib diisi!";
+    return;
+  }
+
+  try {
+    message.textContent = "⏳ Mengunggah foto...";
+
+    const fileName = `${Date.now()}-${foto.name}`;
+
+    const { error: uploadError } = await sb
+      .storage
+      .from("bukti-kehadiran1")
+      .upload(fileName, foto);
+
+    if (uploadError) throw uploadError;
+
+    const { data } = sb
+      .storage
+      .from("bukti-kehadiran1")
+      .getPublicUrl(fileName);
+
+    const { error: insertError } = await sb
+    .from("absensi1")
+    .insert([{
+        nama,
+        nis,
+        kelas,
+        semester,
+        pertemuan: Number(pertemuan),
+        foto: data.publicUrl
+    }]);
+
+
+    if (insertError) throw insertError;
+
+    message.textContent = "✅ Absen berhasil!";
+  } catch (err) {
+    message.textContent = "❌ Error: " + err.message;
+    console.error(err);
+  }
+  setTimeout(() => {
+  window.location.href = "materi.html";
+}, 1500);
+}
+</script>
+
+</body>
+</html>

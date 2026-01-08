@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materi | Rekayasa Perangkat Lunak</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #3740ff, #7b3cff);
+        min-height: 100vh;
+        padding: 40px;
+        color: white;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 22px;
+        padding: 40px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .info {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 30px;
+    }
+
+    .materi-box {
+        margin-bottom: 35px;
+    }
+
+    .materi-box h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .materi-box h3 {
+        margin-top: 20px;
+    }
+
+    .materi-box p, .materi-box li {
+        line-height: 1.8;
+        font-size: 15px;
+        text-align: justify;
+    }
+
+    iframe {
+        width: 100%;
+        height: 420px;
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    }
+
+    .btn-back {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 20px;
+        background: #3740ff;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-back:hover {
+        background: #4254e6;
+    }
+    .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Pertemuan 1</h1>
+    <div class="info">
+        Mata Pelajaran: <b>Rekayasa Perangkat Lunak</b> <br>
+        Kelas: <b>X (Sepuluh)</b>
+    </div>
+
+    <!-- MATERI -->
+    <div class="materi-box">
+
+        <h2>Jenis Penyajian Algoritma</h2>
+
+        <h3>A. Pengertian Algoritma</h3>
+        <p>
+            Algoritma adalah serangkaian langkah-langkah yang disusun secara logis,
+            sistematis, dan berurutan untuk menyelesaikan suatu masalah.
+            Dalam informatika, algoritma digunakan sebagai dasar dalam pembuatan
+            program komputer.
+        </p>
+        <p>
+            Agar algoritma mudah dipahami dan diterapkan, algoritma dapat disajikan
+            dalam beberapa bentuk.
+        </p>
+
+        <h3>B. Jenis-Jenis Penyajian Algoritma</h3>
+        <p>
+            Secara umum, terdapat tiga jenis penyajian algoritma, yaitu:
+        </p>
+        <ul>
+            <li>Bahasa Deskriptif (Bahasa Natural)</li>
+            <li>Pseudocode</li>
+            <li>Flowchart</li>
+        </ul>
+
+        <h3>C. Penyajian Algoritma dengan Bahasa Deskriptif</h3>
+        <p>
+            Bahasa deskriptif adalah penyajian algoritma menggunakan bahasa sehari-hari.
+        </p>
+
+        <p><b>Ciri-ciri:</b></p>
+        <ul>
+            <li>Menggunakan kalimat biasa</li>
+            <li>Mudah dipahami oleh pemula</li>
+            <li>Tidak menggunakan simbol atau aturan khusus</li>
+        </ul>
+
+        <p><b>Contoh:</b></p>
+        <p>Algoritma Membuat Teh</p>
+        <ol>
+            <li>Siapkan gelas.</li>
+            <li>Masukkan teh dan gula ke dalam gelas.</li>
+            <li>Tuang air panas.</li>
+            <li>Aduk hingga rata.</li>
+            <li>Teh siap diminum.</li>
+        </ol>
+
+        <p><b>Kelebihan:</b></p>
+        <ul>
+            <li>Mudah dipahami</li>
+            <li>Cocok untuk pemula</li>
+        </ul>
+
+        <p><b>Kekurangan:</b></p>
+        <ul>
+            <li>Kurang efektif untuk algoritma yang kompleks</li>
+        </ul>
+
+        <h3>D. Penyajian Algoritma dengan Pseudocode</h3>
+        <p>
+            Pseudocode adalah penyajian algoritma yang menyerupai bahasa pemrograman,
+            tetapi tidak terikat pada aturan bahasa pemrograman tertentu.
+        </p>
+
+        <p><b>Ciri-ciri:</b></p>
+        <ul>
+            <li>Menggunakan kata kunci sederhana</li>
+            <li>Struktur lebih teratur</li>
+            <li>Mudah diterjemahkan ke bahasa pemrograman</li>
+        </ul>
+
+        <h3>E. Penyajian Algoritma dengan Flowchart</h3>
+        <p>
+            Flowchart adalah penyajian algoritma dalam bentuk diagram alur
+            menggunakan simbol-simbol tertentu.
+        </p>
+
+        <p><b>Simbol-Simbol Flowchart:</b></p>
+        <ul>
+            <li>Oval : Mulai dan Selesai</li>
+            <li>Persegi Panjang : Proses</li>
+            <li>Jajar Genjang : Input dan Output</li>
+            <li>Panah : Arah alur</li>
+        </ul>
+
+        <p><b>Kelebihan:</b></p>
+        <ul>
+            <li>Mudah dipahami secara visual</li>
+            <li>Menunjukkan alur logika dengan jelas</li>
+        </ul>
+
+        <p><b>Kekurangan:</b></p>
+        <ul>
+            <li>Kurang praktis untuk algoritma yang sangat panjang</li>
+        </ul>
+
+        <h3>F. Perbandingan Jenis Penyajian Algoritma</h3>
+        <ul>
+            <li>Bahasa Deskriptif → Mudah dipahami</li>
+            <li>Pseudocode → Mudah diterjemahkan ke program</li>
+            <li>Flowchart → Mudah dipahami secara visual</li>
+        </ul>
+
+    </div>
+
+    <!-- VIDEO -->
+    <div class="video-box">
+        <h2>🎥 Video Materi</h2>
+        <iframe src="https://www.youtube.com/embed/TXSWS4AFbqs" allowfullscreen></iframe>
+    </div>
+
+     <a href="#" class="btn-back disabled" id="quizBtn">📝 Mulai Quiz 2</a>
+    <p id="timerText" style="margin-top:10px; opacity:0.9;">
+        ⏳ Tombol quiz akan aktif dalam 05:00
+    </p>
+
+</div>
+<script>
+    let timeLeft = 300; // 5 menit = 300 detik
+    const btn = document.getElementById("quizBtn");
+    const timerText = document.getElementById("timerText");
+
+    const countdown = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        timerText.innerHTML = `⏳ Tombol quiz akan aktif dalam ${minutes}:${seconds}`;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            btn.classList.remove("disabled");
+            btn.href = "quiz2.html";
+            timerText.innerHTML = "✅ Silakan mulai quiz";
+        }
+
+        timeLeft--;
+    }, 1000);
+</script>
+
+</body>
+</html>

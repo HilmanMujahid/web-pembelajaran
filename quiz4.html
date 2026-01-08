@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Akhir | Algoritma & Pemrograman</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Poppins,sans-serif;
+    background:linear-gradient(135deg,#3740ff,#7b3cff);
+    color:white;
+    padding:30px;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    background:rgba(255,255,255,.15);
+    padding:30px;
+    border-radius:22px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+.question{margin-bottom:22px}
+label{display:block;margin:6px 0;cursor:pointer}
+input[type="radio"]{margin-right:6px}
+
+.btn{
+    margin-top:20px;
+    padding:14px 24px;
+    border:none;
+    border-radius:12px;
+    background:#22c55e;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+.btn:hover{background:#16a34a}
+
+.btn-dashboard{
+    display:none;
+    margin-top:20px;
+    padding:14px 24px;
+    border-radius:12px;
+    background:#3740ff;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+.btn-dashboard:hover{background:#4254e6}
+
+#result{
+    margin-top:20px;
+    font-size:17px;
+    font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Quiz Akhir – Algoritma & Pemrograman</h2>
+
+<div id="quiz"></div>
+
+<button class="btn" onclick="kirimJawaban()">Kirim Jawaban</button>
+
+<div id="result"></div>
+
+<a href="dashboard.html" class="btn-dashboard" id="btnDashboard">
+⬅️ Kembali ke Dashboard
+</a>
+</div>
+
+<script>
+// ================= DATA SOAL =================
+const soal = [
+ {q:"Algoritma langkah berurutan tanpa kondisi disebut …", a:["Percabangan","Perulangan","Sekuensial","Rekursif"], k:2},
+ {q:"Struktur pengambilan keputusan disebut …", a:["Sekuensial","Percabangan","Perulangan","Sorting"], k:1},
+ {q:"Mencetak angka 1–10 paling tepat menggunakan …", a:["Sekuensial","Percabangan","Perulangan","Graph"], k:2},
+ {q:"Algoritma yang memanggil dirinya sendiri disebut …", a:["Sekuensial","Divide & Conquer","Rekursif","Searching"], k:2},
+ {q:"Algoritma untuk mengurutkan data disebut …", a:["Searching","Sorting","Graph","Selection"], k:1},
+ {q:"Kekurangan bahasa deskriptif adalah …", a:["Sulit dipahami","Kurang efektif untuk algoritma kompleks","Tidak ada input output","Tidak praktis"], k:1},
+ {q:"Ciri utama pseudocode adalah …", a:["Simbol flowchart","Mirip bahasa pemrograman","Bahasa sehari-hari","Hanya komputer"], k:1},
+ {q:"Diagram alur algoritma disebut …", a:["Pseudocode","Bahasa deskriptif","Flowchart","Program"], k:2},
+ {q:"Simbol proses pada flowchart adalah …", a:["Oval","Jajar genjang","Panah","Persegi panjang"], k:3},
+ {q:"Penyajian algoritma terbaik secara visual adalah …", a:["Bahasa deskriptif","Pseudocode","Flowchart","Bahasa pemrograman"], k:2},
+ {q:"Jika warna lampu merah maka output …", a:["Jalan","Pelan-pelan","Berhenti","Abaikan"], k:2},
+ {q:"Percabangan untuk banyak kondisi menggunakan …", a:["IF","IF–ELSE","IF–ELSE IF–ELSE","LOOP"], k:2},
+ {q:"Jika kondisi bernilai FALSE maka dijalankan …", a:["Stop","IF","ELSE","Ulangi"], k:2},
+ {q:"Pseudocode digunakan untuk …", a:["Menjalankan program","Menyimpan data","Menjelaskan alur logika","Desain UI"], k:2},
+ {q:"Percabangan penting karena …", a:["Program lebih panjang","Program dapat mengambil keputusan","Program lebih lambat","Kode rumit"], k:1}
+];
+
+// ================= TAMPILKAN SOAL =================
+const quizDiv = document.getElementById("quiz");
+
+soal.forEach((s,i)=>{
+    quizDiv.innerHTML += `
+    <div class="question">
+        <b>${i+1}. ${s.q}</b>
+        ${s.a.map((opsi,idx)=>`
+            <label>
+                <input type="radio" name="q${i}" value="${idx}">
+                ${opsi}
+            </label>
+        `).join("")}
+    </div>
+    `;
+});
+
+// ================= HITUNG NILAI =================
+function kirimJawaban(){
+    let benar = 0;
+
+    for(let i=0;i<soal.length;i++){
+        const jawab = document.querySelector(`input[name="q${i}"]:checked`);
+        if(!jawab){
+            alert("⚠️ Harap jawab semua soal!");
+            return;
+        }
+        if(parseInt(jawab.value) === soal[i].k){
+            benar++;
+        }
+    }
+
+    const nilai = Math.round((benar / soal.length) * 100);
+
+    document.getElementById("result").innerHTML =
+        `✅ Quiz selesai!<br>Nilai Akhir kamu: <b>${nilai}</b>`;
+
+    document.getElementById("btnDashboard").style.display = "inline-block";
+}
+</script>
+
+</body>
+</html>

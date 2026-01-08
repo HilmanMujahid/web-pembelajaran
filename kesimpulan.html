@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materi | Rekayasa Perangkat Lunak</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #3740ff, #7b3cff);
+        min-height: 100vh;
+        padding: 40px;
+        color: white;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 22px;
+        padding: 40px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .info {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 30px;
+    }
+
+    .materi-box {
+        margin-bottom: 35px;
+    }
+
+    .materi-box h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .materi-box p {
+        line-height: 1.8;
+        font-size: 15px;
+        text-align: justify;
+    }
+
+    .video-box h2 {
+        margin-bottom: 15px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 420px;
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    }
+
+    .btn-back {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 20px;
+        background: #3740ff;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-back:hover {
+        background: #4254e6;
+    }
+    .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Pertemuan 1</h1>
+    <div class="info">
+        Mata Pelajaran: <b>Rekayasa Perangkat Lunak</b> <br>
+        Kelas: <b>X (Sepuluh)</b>
+    </div>
+
+    <!-- DESKRIPSI MATERI -->
+    <div class="materi-box">
+         <h2>Rangkuman</h2>
+    </div>
+
+    <p>
+        Algoritma dan pemrograman merupakan dua konsep dasar yang saling berkaitan dan menjadi fondasi utama dalam dunia informatika. Algoritma adalah urutan langkah-langkah logis, sistematis, dan terbatas untuk menyelesaikan suatu masalah, sedangkan pemrograman merupakan proses menerjemahkan algoritma tersebut ke dalam bahasa yang dapat dipahami dan dijalankan oleh komputer.
+    </p>
+
+    <p>
+        Pemahaman algoritma yang baik sangat penting karena menentukan kualitas program yang dihasilkan. Algoritma membantu menyusun alur logika yang terstruktur, meminimalkan kesalahan, serta membuat program lebih efisien dan mudah dikembangkan. Salah satu konsep dasar dalam algoritma adalah sequence (urutan langkah), di mana setiap langkah harus disusun secara benar agar menghasilkan output yang sesuai.
+    </p>
+
+    <p>
+        Algoritma dapat diklasifikasikan berdasarkan struktur kontrol, strategi penyelesaian, dan fungsi penggunaannya, seperti algoritma sekuensial, percabangan, perulangan, rekursif, divide and conquer, sorting, searching, dan graph. Selain itu, algoritma juga dapat disajikan dalam berbagai bentuk, yaitu bahasa deskriptif, pseudocode, dan flowchart, yang masing-masing memiliki kelebihan dan kekurangan sesuai dengan kebutuhan dan tingkat pemahaman pengguna.
+    </p>
+
+    <p>
+        Percabangan dalam algoritma merupakan struktur logika yang digunakan untuk mengambil keputusan berdasarkan kondisi tertentu dengan pola IF–THEN–ELSE. Percabangan memungkinkan program bersifat dinamis, mampu merespons berbagai kondisi, dan meniru cara berpikir manusia dalam mengambil keputusan.
+    </p>
+
+    <p>
+        Dengan memahami konsep dasar algoritma, jenis penyajian algoritma, serta percabangan, peserta didik diharapkan mampu berpikir logis dan sistematis sebagai bekal untuk mempelajari materi pemrograman lanjutan secara lebih mendalam.
+    </p>
+
+   <p id="timerText" style="margin-top:20px;font-weight:600;"></p>
+
+<a href="#" id="quizBtn" class="btn-back disabled">
+    ▶️ Mulai Quiz Akhir
+</a>
+
+</div>
+<script>
+    let timeLeft = 60; // 1 menit = 60 detik
+    const btn = document.getElementById("quizBtn");
+    const timerText = document.getElementById("timerText");
+
+    const countdown = setInterval(() => {
+        let seconds = timeLeft < 10 ? "0" + timeLeft : timeLeft;
+
+        timerText.innerHTML = `⏳ Tombol quiz akan aktif dalam 00:${seconds}`;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            btn.classList.remove("disabled");
+            btn.href = "quiz4.html";
+            timerText.innerHTML = "✅ Silakan mulai quiz akhir";
+        }
+
+        timeLeft--;
+    }, 1000);
+</script>
+
+</body>
+</html>

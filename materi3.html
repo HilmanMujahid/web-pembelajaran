@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materi | Rekayasa Perangkat Lunak</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #3740ff, #7b3cff);
+        min-height: 100vh;
+        padding: 40px;
+        color: white;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 22px;
+        padding: 40px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .info {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 30px;
+    }
+
+    .materi-box {
+        margin-bottom: 35px;
+    }
+
+    .materi-box h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .materi-box p {
+        line-height: 1.8;
+        font-size: 15px;
+        text-align: justify;
+    }
+
+    .video-box h2 {
+        margin-bottom: 15px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 420px;
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    }
+
+    .btn-back {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 20px;
+        background: #3740ff;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-back:hover {
+        background: #4254e6;
+    }
+    .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Pertemuan 1</h1>
+    <div class="info">
+        Mata Pelajaran: <b>Rekayasa Perangkat Lunak</b> <br>
+        Kelas: <b>X (Sepuluh)</b>
+    </div>
+
+    <!-- DESKRIPSI MATERI -->
+    <div class="materi-box">
+        <h2>Materi Percabangan</h2>
+
+    <h2>1. Pengertian Percabangan</h2>
+    <p>
+        Percabangan adalah struktur logika dalam algoritma yang digunakan untuk
+        mengambil keputusan berdasarkan suatu kondisi.
+    </p>
+    <p>
+        Dengan percabangan, program dapat memilih satu aksi tertentu dari beberapa
+        kemungkinan, tergantung pada apakah kondisi yang diuji bernilai benar (true)
+        atau salah (false).
+    </p>
+
+    <p>Percabangan sangat penting karena membuat program menjadi:</p>
+    <ul>
+        <li>Lebih dinamis</li>
+        <li>Dapat merespons situasi yang berbeda</li>
+        <li>Menyerupai cara manusia mengambil keputusan</li>
+    </ul>
+
+    <h2>2. Tujuan Penggunaan Percabangan</h2>
+    <p>Tujuan utama percabangan dalam algoritma adalah:</p>
+    <ul>
+        <li>Mengontrol alur jalannya program</li>
+        <li>Menentukan keputusan berdasarkan kondisi tertentu</li>
+        <li>Membuat program lebih fleksibel dan efisien</li>
+        <li>Menyesuaikan output dengan input yang diberikan</li>
+    </ul>
+
+    <h2>3. Konsep Dasar Percabangan</h2>
+    <p>Percabangan bekerja dengan pola IF – THEN – ELSE, yaitu:</p>
+    <ul>
+        <li>IF (jika) → kondisi diuji</li>
+        <li>THEN (maka) → perintah dijalankan jika kondisi benar</li>
+        <li>ELSE (jika tidak) → perintah dijalankan jika kondisi salah</li>
+    </ul>
+
+    <p>
+        Secara sederhana:
+        Jika kondisi terpenuhi, lakukan aksi A. Jika tidak, lakukan aksi B.
+    </p>
+
+    <h2>4. Contoh Kasus dalam Kehidupan Sehari-hari</h2>
+    <p>Contoh sederhana percabangan dapat ditemukan pada lampu lalu lintas:</p>
+
+    <table>
+        <tr>
+            <th>Warna Lampu</th>
+            <th>Keputusan</th>
+        </tr>
+        <tr>
+            <td>Merah</td>
+            <td>Berhenti</td>
+        </tr>
+        <tr>
+            <td>Kuning</td>
+            <td>Pelan-pelan</td>
+        </tr>
+        <tr>
+            <td>Hijau</td>
+            <td>Jalan</td>
+        </tr>
+    </table>
+
+    <p>Dari contoh ini:</p>
+    <ul>
+        <li>Input → Warna lampu</li>
+        <li>Proses → Mengecek kondisi warna</li>
+        <li>Output → Keputusan (berhenti, pelan, jalan)</li>
+    </ul>
+
+    <h2>5. Identifikasi Input dan Output</h2>
+    <p>Dalam sebuah algoritma percabangan, penting untuk mengenali:</p>
+
+    <p><b>Input</b><br>
+        Data yang masuk dan akan diuji (contoh: warna lampu)
+    </p>
+
+    <p><b>Output</b><br>
+        Hasil keputusan yang diambil oleh program (contoh: berhenti, pelan, melaju)
+    </p>
+
+    <h2>6. Contoh Pseudocode Percabangan</h2>
+    <p>Berikut contoh pseudocode berdasarkan kasus lampu lalu lintas:</p>
+
+    <pre>
+INPUT warna_lampu
+
+IF warna_lampu = "merah" THEN
+    OUTPUT "Berhenti"
+ELSE IF warna_lampu = "kuning" THEN
+    OUTPUT "Pelan-pelan"
+ELSE IF warna_lampu = "hijau" THEN
+    OUTPUT "Jalan"
+ELSE
+    OUTPUT "Warna tidak dikenali"
+END IF
+    </pre>
+
+    <p>Pseudocode ini menunjukkan bagaimana komputer:</p>
+    <ul>
+        <li>Membaca input</li>
+        <li>Mengecek kondisi</li>
+        <li>Mengambil keputusan yang sesuai</li>
+    </ul>
+
+    <h2>7. Jenis-Jenis Percabangan</h2>
+    <ul>
+        <li>Percabangan Tunggal (IF)<br>
+            Digunakan jika hanya ada satu kondisi.
+        </li>
+        <li>Percabangan Dua Arah (IF – ELSE)<br>
+            Digunakan jika ada dua kemungkinan keputusan.
+        </li>
+        <li>Percabangan Banyak Pilihan (IF – ELSE IF – ELSE)<br>
+            Digunakan jika terdapat lebih dari dua kondisi.
+        </li>
+    </ul>
+
+    <h2>8. Pentingnya Percabangan dalam Pemrograman</h2>
+    <p>Percabangan digunakan hampir di semua program, seperti:</p>
+    <ul>
+        <li>Login dan autentikasi</li>
+        <li>Game (menang, kalah, lanjut)</li>
+        <li>Sistem nilai (lulus atau tidak)</li>
+        <li>Lampu lalu lintas dan sistem otomatis</li>
+    </ul>
+
+    <p>
+        Tanpa percabangan, program hanya akan berjalan lurus tanpa keputusan.
+    </p>
+
+    </div>
+
+    <!-- VIDEO MATERI -->
+    <div class="video-box">
+        <h2>🎥 Video Materi</h2>
+
+        <!-- VIDEO YOUTUBE -->
+        <iframe 
+            src="https://www.youtube.com/embed/1eUxZ2DUKKc"
+            allowfullscreen>
+        </iframe>
+
+        <!--
+        Jika pakai video lokal:
+        <video controls width="100%" style="border-radius:16px;">
+            <source src="video-materi.mp4" type="video/mp4">
+        </video>
+        -->
+    </div>
+     <a href="#" class="btn-back disabled" id="quizBtn">📝 Mulai Quiz 3</a>
+    <p id="timerText" style="margin-top:10px; opacity:0.9;">
+        ⏳ Tombol quiz akan aktif dalam 05:00
+    </p>
+
+</div>
+<script>
+    let timeLeft = 300; // 5 menit = 300 detik
+    const btn = document.getElementById("quizBtn");
+    const timerText = document.getElementById("timerText");
+
+    const countdown = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        timerText.innerHTML = `⏳ Tombol quiz akan aktif dalam ${minutes}:${seconds}`;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            btn.classList.remove("disabled");
+            btn.href = "quiz3.html";
+            timerText.innerHTML = "✅ Silakan mulai quiz";
+        }
+
+        timeLeft--;
+    }, 1000);
+</script>
+
+</body>
+</html>

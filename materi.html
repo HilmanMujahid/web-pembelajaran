@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Materi | Rekayasa Perangkat Lunak</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #3740ff, #7b3cff);
+        min-height: 100vh;
+        padding: 40px;
+        color: white;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background: rgba(255,255,255,0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 22px;
+        padding: 40px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .info {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 30px;
+    }
+
+    .materi-box {
+        margin-bottom: 35px;
+    }
+
+    .materi-box h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .materi-box p, .materi-box li {
+        line-height: 1.8;
+        font-size: 15px;
+        text-align: justify;
+    }
+
+    iframe {
+        width: 100%;
+        height: 420px;
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    }
+
+    .btn-back {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 20px;
+        background: #3740ff;
+        border-radius: 10px;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .btn-back:hover {
+        background: #4254e6;
+    }
+    .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Pertemuan 1</h1>
+    <div class="info">
+        Mata Pelajaran: <b>Rekayasa Perangkat Lunak</b> <br>
+        Kelas: <b>X (Sepuluh)</b>
+    </div>
+
+    <!-- DESKRIPSI MATERI -->
+    <div class="materi-box">
+
+         <h2>🎯 Tujuan Pembelajaran</h2>
+        <ul>
+            <li>Menjelaskan pengertian algoritma dan pemrograman secara tepat.</li>
+            <li>Menjelaskan hubungan antara algoritma dan pemrograman.</li>
+            <li>Menjelaskan pentingnya urutan langkah (sequence) dalam algoritma.</li>
+            <li>Mengidentifikasi jenis-jenis algoritma berdasarkan struktur dan fungsi.</li>
+        </ul>
+
+        <h2>1. Pengertian Algoritma</h2>
+        <p>
+            Algoritma adalah urutan langkah-langkah logis, sistematis, dan terbatas yang digunakan untuk menyelesaikan suatu permasalahan.
+            Algoritma menekankan pada alur berpikir dan logika penyelesaian masalah, bukan pada bahasa pemrograman tertentu.
+        </p>
+        <p>
+            Menurut Donald E. Knuth, algoritma adalah sekumpulan aturan yang jelas dan terhingga untuk menyelesaikan suatu masalah.
+            Artinya, setiap algoritma harus dapat dipahami, dijalankan, dan pasti berakhir.
+        </p>
+
+        <p><b>Ciri-ciri Algoritma yang Baik</b></p>
+        <ul>
+            <li>Memiliki input (data masukan)</li>
+            <li>Menghasilkan output (hasil)</li>
+            <li>Langkah-langkahnya jelas dan tidak ambigu</li>
+            <li>Bersifat finite (pasti berhenti)</li>
+            <li>Efektif dan dapat dilaksanakan</li>
+        </ul>
+
+        <p><b>Contoh Algoritma dalam Kehidupan Sehari-hari</b></p>
+        <p>Menyalakan komputer:</p>
+        <ol>
+            <li>Tekan tombol power</li>
+            <li>Tunggu sistem berjalan</li>
+            <li>Masukkan username dan password</li>
+            <li>Komputer siap digunakan</li>
+        </ol>
+        <p>
+            Contoh ini menunjukkan bahwa algoritma tidak selalu berhubungan langsung dengan komputer,
+            tetapi merupakan pola berpikir logis.
+        </p>
+
+        <h2>2. Pengertian Pemrograman</h2>
+        <p>
+            Pemrograman adalah proses menerjemahkan algoritma ke dalam bahasa yang dapat dipahami dan dijalankan oleh komputer,
+            seperti Python, C++, Java, dan bahasa pemrograman lainnya.
+        </p>
+        <p>
+            Jika algoritma diibaratkan sebagai rencana atau logika solusi,
+            maka pemrograman adalah pelaksanaan rencana tersebut dalam bentuk kode program.
+        </p>
+        <p>Tanpa algoritma, pemrograman hanya akan menghasilkan kode yang:</p>
+        <ul>
+            <li>Sulit dipahami</li>
+            <li>Banyak kesalahan logika</li>
+            <li>Tidak efisien</li>
+        </ul>
+
+        <h2>3. Hubungan Algoritma dan Pemrograman</h2>
+        <p>
+            Algoritma dan pemrograman memiliki hubungan yang sangat erat dan tidak dapat dipisahkan.
+        </p>
+        <ul>
+            <li>Algoritma → menentukan logika dan alur penyelesaian masalah</li>
+            <li>Pemrograman → mengimplementasikan algoritma dalam bahasa komputer</li>
+        </ul>
+
+        <p><b>Dengan algoritma yang baik:</b></p>
+        <ul>
+            <li>Program menjadi lebih terstruktur</li>
+            <li>Mudah dikembangkan</li>
+            <li>Mudah diperbaiki (debugging)</li>
+        </ul>
+
+        <p><b>Sebaliknya, tanpa algoritma:</b></p>
+        <ul>
+            <li>Program cenderung tidak terarah</li>
+            <li>Sulit dipahami oleh orang lain</li>
+            <li>Rentan menghasilkan kesalahan</li>
+        </ul>
+
+        <h2>4. Pentingnya Urutan Langkah (Sequence)</h2>
+        <p>
+            Urutan langkah dalam algoritma sangat menentukan hasil akhir program.
+            Kesalahan urutan langkah dapat menyebabkan output yang salah, meskipun semua langkahnya benar.
+        </p>
+
+        <p><b>Urutan yang Benar</b></p>
+        <ol>
+            <li>Input panjang</li>
+            <li>Input lebar</li>
+            <li>Proses perkalian</li>
+            <li>Tampilkan hasil</li>
+        </ol>
+
+        <p>
+            Konsep urutan langkah ini disebut sequence, dan menjadi dasar dari pemrograman terstruktur.
+            Tanpa sequence yang benar, program tidak akan berjalan sesuai harapan.
+        </p>
+
+        <h2>5. Jenis-Jenis Algoritma</h2>
+
+        <h3>A. Jenis Algoritma Berdasarkan Struktur Kontrol</h3>
+
+        <h3>1. Algoritma Sekuensial</h3>
+        <p>
+            Algoritma sekuensial adalah algoritma yang dijalankan langkah demi langkah
+            secara berurutan tanpa adanya percabangan maupun pengulangan.
+        </p>
+        <p>
+            <b>Contoh:</b> Menghitung luas bangun datar.
+        </p>
+
+        <h3>2. Algoritma Percabangan (Selection)</h3>
+        <p>
+            Algoritma percabangan adalah algoritma yang memilih tindakan berdasarkan
+            kondisi tertentu. Algoritma ini digunakan untuk pengambilan keputusan
+            dalam sebuah program.
+        </p>
+        <p><b>Contoh:</b></p>
+        <ul>
+            <li>Jika nilai ≥ 75 → Lulus</li>
+            <li>Jika nilai &lt; 75 → Tidak Lulus</li>
+        </ul>
+
+        <h3>3. Algoritma Perulangan (Iteration)</h3>
+        <p>
+            Algoritma perulangan adalah algoritma yang menjalankan langkah-langkah
+            tertentu secara berulang selama kondisi terpenuhi.
+        </p>
+        <p>
+            <b>Contoh:</b> Mencetak angka 1 sampai 10 menggunakan perulangan.
+        </p>
+
+        <h2>B. Jenis Algoritma Berdasarkan Strategi Penyelesaian</h2>
+
+        <h3>4. Algoritma Rekursif</h3>
+        <p>
+            Algoritma rekursif adalah algoritma yang memanggil dirinya sendiri
+            untuk menyelesaikan masalah dengan memecahnya menjadi sub-masalah
+            yang lebih kecil.
+        </p>
+        <p>
+            <b>Contoh:</b> Perhitungan faktorial.
+        </p>
+
+        <h3>5. Algoritma Divide and Conquer</h3>
+        <p>
+            Divide and Conquer merupakan strategi penyelesaian masalah dengan
+            cara membagi masalah besar menjadi beberapa bagian kecil,
+            menyelesaikannya, lalu menggabungkan hasilnya.
+        </p>
+        <p>
+            <b>Contoh:</b> Merge Sort dan Quick Sort.
+        </p>
+
+        <h2>C. Jenis Algoritma Berdasarkan Fungsi Khusus</h2>
+
+        <h3>6. Algoritma Pengurutan (Sorting)</h3>
+        <p>
+            Algoritma pengurutan digunakan untuk mengurutkan data,
+            baik secara menaik (ascending) maupun menurun (descending).
+        </p>
+        <p>
+            <b>Contoh:</b> Bubble Sort, Selection Sort, Insertion Sort.
+        </p>
+
+        <h3>7. Algoritma Pencarian (Searching)</h3>
+        <p>
+            Algoritma pencarian digunakan untuk mencari data tertentu
+            di dalam sekumpulan data.
+        </p>
+        <p>
+            <b>Contoh:</b> Linear Search dan Binary Search.
+        </p>
+
+        <h3>8. Algoritma Graph</h3>
+        <p>
+            Algoritma graph digunakan untuk menyelesaikan masalah yang
+            berkaitan dengan graf, seperti hubungan antar node atau
+            pencarian rute terpendek.
+        </p>
+        <p>
+            <b>Contoh penerapan:</b> Jaringan komputer dan sistem navigasi.
+        </p>
+
+    </div>
+
+    <!-- VIDEO MATERI -->
+    <div class="video-box">
+        <h2>🎥 Video Materi</h2>
+        <iframe src="https://www.youtube.com/embed/e4gnx-LZzdM" allowfullscreen></iframe>
+    </div>
+
+    <a href="#" class="btn-back disabled" id="quizBtn">📝 Mulai Quiz 1</a>
+    <p id="timerText" style="margin-top:10px; opacity:0.9;">
+        ⏳ Tombol quiz akan aktif dalam 05:00
+    </p>
+
+</div>
+<script>
+    let timeLeft = 300; // 5 menit = 300 detik
+    const btn = document.getElementById("quizBtn");
+    const timerText = document.getElementById("timerText");
+
+    const countdown = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        timerText.innerHTML = `⏳ Tombol quiz akan aktif dalam ${minutes}:${seconds}`;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            btn.classList.remove("disabled");
+            btn.href = "quiz1.html";
+            timerText.innerHTML = "✅ Silakan mulai quiz";
+        }
+
+        timeLeft--;
+    }, 1000);
+</script>
+
+</body>
+</html>

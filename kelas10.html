@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelas 10</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Poppins, sans-serif;
+        background: linear-gradient(135deg, #3740ff, #7b3cff);
+        color: white;
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .box {
+        background: rgba(255,255,255,0.18);
+        padding: 18px 25px;
+        border-radius: 14px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: 0.3s;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+
+    .box:hover {
+        background: rgba(255,255,255,0.28);
+        transform: translateY(-4px);
+    }
+
+    .section {
+        margin-top: 30px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .sub-box {
+        margin-left: 30px;
+        font-size: 18px;
+    }
+
+    .meeting-box {
+        margin-left: 60px;
+        font-size: 16px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Kelas 10</h1>
+<p>Pilih semester untuk melihat mata pelajaran.</p>
+
+<!-- PILIH SEMESTER -->
+<div class="section">
+    <div class="box" onclick="showSemester(1)">📘 Semester 1</div>
+    <div class="box" onclick="showSemester(2)">📕 Semester 2</div>
+</div>
+
+<!-- MATA PELAJARAN -->
+<div class="section hidden" id="mapelSection">
+    <h2>Mata Pelajaran</h2>
+
+    <div class="box sub-box" onclick="showMapel()">💻 Rekayasa Perangkat Lunak</div>
+    <div class="box sub-box">📐 Matematika</div>
+    <div class="box sub-box">🌍 Bahasa Inggris</div>
+</div>
+
+<!-- PERTEMUAN -->
+<div class="section hidden" id="pertemuanSection">
+    <h2>Pertemuan</h2>
+
+    <div class="box meeting-box" onclick="goToMateri()">📖 Pertemuan 1</div>
+    <div class="box meeting-box">📖 Pertemuan 2</div>
+    <div class="box meeting-box">📖 Pertemuan 3</div>
+</div>
+
+<script>
+function showSemester(semester) {
+    document.getElementById("mapelSection").classList.remove("hidden");
+    document.getElementById("pertemuanSection").classList.add("hidden");
+}
+
+function showMapel() {
+    document.getElementById("pertemuanSection").classList.remove("hidden");
+}
+
+function goToMateri() {
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
