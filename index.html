@@ -114,6 +114,97 @@
             padding: 25px;
         }
     }
+/* =====================
+   RESPONSIVE MOBILE
+===================== */
+@media (max-width: 768px) {
+
+    body {
+        flex-direction: column;
+        height: auto;
+        overflow-x: hidden;
+    }
+
+    /* Sidebar tersembunyi saat awal */
+    .sidebar {
+        width: 240px;
+        z-index: 1000;
+        transform: translateX(-260px);
+    }
+
+    /* Sidebar muncul saat tombol menu diklik */
+    .sidebar.hidden {
+        transform: translateX(-260px);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Konten full */
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .content.full {
+        margin-left: 0;
+    }
+
+    /* Hamburger */
+    .hamburger {
+        font-size: 26px;
+        padding: 8px 12px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 10px;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+
+    /* Profil */
+    .profile-box {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        display: block;
+        margin: 0 auto 15px;
+    }
+
+    h1 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 17px;
+        margin-top: 20px;
+    }
+
+    p, li {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    ul {
+        padding-left: 18px;
+    }
+
+    .btn-kelas {
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        padding: 14px;
+    }
+}
 
 </style>
 </head>
@@ -186,8 +277,7 @@
 
 <script>
 function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("hidden");
-    document.getElementById("content").classList.toggle("full");
+    document.getElementById("sidebar").classList.toggle("active");
 }
 
 function goTo(page) {
@@ -197,5 +287,6 @@ function goTo(page) {
 
 </body>
 </html>
+
 
 
