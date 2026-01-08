@@ -97,6 +97,69 @@
         transform: translateY(-8px);
         background: rgba(255,255,255,0.28);
     }
+/* =====================
+   RESPONSIVE MOBILE
+===================== */
+@media (max-width: 768px) {
+
+    body {
+        flex-direction: column;
+        height: auto;
+        overflow-x: hidden;
+    }
+
+    /* Sidebar default: tersembunyi */
+    .sidebar {
+        width: 240px;
+        z-index: 1000;
+        transform: translateX(-260px);
+    }
+
+    /* Sidebar muncul saat aktif */
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Konten full */
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .content.full {
+        margin-left: 0;
+    }
+
+    /* Hamburger */
+    .hamburger {
+        font-size: 26px;
+        padding: 8px 12px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 10px;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+
+    /* Judul */
+    h1 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    /* Container kartu kelas */
+    .grade-container {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    /* Kartu kelas */
+    .grade-card {
+        font-size: 20px;
+        padding: 25px;
+        border-radius: 16px;
+    }
+}
 
 </style>
 </head>
@@ -141,6 +204,7 @@ function toggleSidebar() {
 
 </body>
 </html>
+
 
 
 
