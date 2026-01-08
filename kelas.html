@@ -196,11 +196,18 @@ function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("active");
 }
 
-
+/* Tutup sidebar saat klik konten (khusus HP) */
+document.getElementById("content").addEventListener("click", function () {
+    if (window.innerWidth <= 768) {
+        document.getElementById("sidebar").classList.remove("active");
+    }
+});
 </script>
+
 
 </body>
 </html>
+
 
 
 
