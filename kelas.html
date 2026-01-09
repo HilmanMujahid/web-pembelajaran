@@ -16,22 +16,24 @@ body {
     color: white;
 }
 
+/* SIDEBAR */
 .sidebar {
     width: 230px;
-    background: rgba(0,0,50,0.95);
+    background: rgba(0,0,50,0.45); /* warna sama seperti sebelumnya */
     backdrop-filter: blur(10px);
     padding: 25px 20px;
     box-shadow: 3px 0 12px rgba(0,0,0,0.25);
     position: fixed;
-    left: -250px; /* start hidden */
     top: 0;
+    left: 0;
     bottom: 0;
+    transform: translateX(-100%); /* awal tersembunyi */
     transition: transform 0.3s ease;
     z-index: 1000;
 }
 
 .sidebar.show {
-    transform: translateX(250px); /* tampil */
+    transform: translateX(0); /* tampil */
 }
 
 .sidebar h1, .sidebar b {
@@ -54,26 +56,29 @@ body {
     background: #5468ff;
 }
 
+/* CONTENT */
 .content {
     flex: 1;
     margin-left: 0;
     padding: 30px 20px;
     transition: .3s;
     overflow-y: auto;
-    z-index: 1;
     position: relative;
+    z-index: 1;
 }
 
+/* HAMBURGER */
 .hamburger {
     font-size: 28px;
     cursor: pointer;
     margin-bottom: 20px;
     display: inline-block;
     padding: 10px;
-    z-index: 1100; /* lebih tinggi dari sidebar */
     position: relative;
+    z-index: 2000; /* di atas sidebar */
 }
 
+/* CARD */
 .grade-container {
     display: flex;
     gap: 20px;
@@ -100,10 +105,9 @@ body {
     background: rgba(255,255,255,0.28);
 }
 
-/* MOBILE */
+/* RESPONSIVE MOBILE */
 @media (max-width: 768px) {
     .hamburger { display: inline-block; }
-    .sidebar { left: -250px; }
 }
 </style>
 </head>
@@ -136,14 +140,15 @@ function goTo(page) {
     window.location.href = page;
 }
 
-// Toggle sidebar via hamburger
+// HAMBURGER CLICK
 const sidebar = document.getElementById('sidebar');
 const hamburger = document.getElementById('hamburger');
+
 hamburger.addEventListener('click', () => {
     sidebar.classList.toggle('show');
 });
 
-// Close sidebar if klik Kelas
+// KLIK KELAS UNTUK TUTUP SIDEBAR
 document.getElementById("kelasSidebar").addEventListener("click", function() {
     sidebar.classList.remove('show');
 });
@@ -162,10 +167,12 @@ document.addEventListener('touchend', e => {
 }, false);
 
 function handleSwipe() {
-    if(touchEndX - touchStartX > 50){ // swipe ke kanan
+    // Swipe ke kanan -> buka
+    if(touchEndX - touchStartX > 50){ 
         sidebar.classList.add('show');
     }
-    if(touchStartX - touchEndX > 50){ // swipe ke kiri
+    // Swipe ke kiri -> tutup
+    if(touchStartX - touchEndX > 50){ 
         sidebar.classList.remove('show');
     }
 }
