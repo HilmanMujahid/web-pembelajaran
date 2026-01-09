@@ -69,17 +69,6 @@ body {
     z-index: 1;
 }
 
-/* HAMBURGER */
-.hamburger {
-    font-size: 28px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    display: inline-block;
-    padding: 10px;
-    position: relative;
-    z-index: 2000; /* di atas sidebar */
-}
-
 /* CARD */
 .grade-container {
     display: flex;
@@ -107,10 +96,6 @@ body {
     background: rgba(255,255,255,0.28);
 }
 
-/* RESPONSIVE MOBILE */
-@media (max-width: 768px) {
-    .hamburger { display: inline-block; }
-}
 </style>
 </head>
 <body>
@@ -126,7 +111,6 @@ body {
 
 <!-- CONTENT -->
 <div class="content" id="content">
-    <span class="hamburger" id="hamburger">☰ Menu</span>
 
     <h1>Pilih Tingkat Kelas</h1>
 
@@ -144,11 +128,6 @@ function goTo(page) {
 
 // HAMBURGER CLICK
 const sidebar = document.getElementById('sidebar');
-const hamburger = document.getElementById('hamburger');
-
-hamburger.addEventListener('click', () => {
-    sidebar.classList.toggle('show');
-});
 
 // KLIK KELAS UNTUK TUTUP SIDEBAR
 document.getElementById("kelasSidebar").addEventListener("click", function() {
@@ -182,4 +161,5 @@ function handleSwipe() {
 
 </body>
 </html>
+
 
