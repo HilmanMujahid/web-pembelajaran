@@ -31,9 +31,9 @@
         top: 0;
         left: 0;
         bottom: 0;
-        transform: translateX(0);
+        transform: translateX(0); /* desktop selalu tampil */
         transition: transform 0.3s ease;
-        z-index: 1001; /* di atas content */
+        z-index: 1001;
     }
 
     .sidebar h1 {
@@ -71,8 +71,8 @@
         margin-left: 250px;
         transition: margin-left 0.3s;
         overflow-y: auto;
-        z-index: 1; /* di bawah sidebar */
         position: relative;
+        z-index: 1;
     }
 
     .profile-box {
@@ -110,41 +110,19 @@
     }
 
     /* ==========================
-       HAMBURGER
-    ========================== */
-    .hamburger {
-        font-size: 28px;
-        cursor: pointer;
-        margin-bottom: 20px;
-        display: none;
-        padding: 10px;
-        background: rgba(255,255,255,0.2);
-        border-radius: 10px;
-        position: fixed; /* FIX untuk selalu di atas */
-        top: 15px;
-        left: 15px;
-        z-index: 1002; /* di atas semua */
-    }
-
-    /* ==========================
        RESPONSIVE MOBILE
     ========================== */
     @media (max-width: 768px) {
         .sidebar {
-            transform: translateX(-260px);
+            transform: translateX(-260px); /* tersembunyi default */
         }
-
         .sidebar.active {
-            transform: translateX(0);
+            transform: translateX(0); /* muncul saat swipe */
         }
 
         .content {
             margin-left: 0;
             padding: 20px;
-        }
-
-        .hamburger {
-            display: inline-block;
         }
 
         .profile-box {
@@ -166,7 +144,6 @@
         ul { padding-left: 18px; }
         .btn-kelas { width: 100%; text-align: center; font-size: 15px; padding: 14px; }
     }
-
 </style>
 </head>
 <body>
@@ -181,10 +158,7 @@
 
 <!-- CONTENT -->
 <div class="content" id="content">
-    <span class="hamburger" id="hamburger">☰ Menu</span>
-
     <h1>Profil Sekolah</h1>
-
     <div class="profile-box">
         <img src="logo smk muhamadiah.jpeg" class="profile-image" alt="Logo SMK">
         <h2>SMK Muhammadiyah Garut</h2>
@@ -225,25 +199,16 @@
 
 <script>
     const sidebar = document.getElementById("sidebar");
-    const hamburger = document.getElementById("hamburger");
-
-    // Toggle sidebar via hamburger
-    hamburger.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
-    });
-
-    // Close sidebar saat klik konten
-    document.getElementById("content").addEventListener("click", () => {
-        if(window.innerWidth <= 768){
-            sidebar.classList.remove("active");
-        }
-    });
 
     function goTo(page){ window.location.href = page; }
-    function closeSidebarMobile(){ if(window.innerWidth <= 768){ sidebar.classList.remove("active"); } }
+    function closeSidebarMobile(){ 
+        if(window.innerWidth <= 768){ 
+            sidebar.classList.remove("active"); 
+        } 
+    }
 
     // =========================
-    // SWIPE GESTURE
+    // SWIPE GESTURE HP
     // =========================
     let touchStartX = 0;
     let touchEndX = 0;
@@ -256,8 +221,11 @@
         if(screenWidth > 768) return; // hanya mobile
         const swipeThreshold = 50;
 
-        if(touchEndX - touchStartX > swipeThreshold){ sidebar.classList.add("active"); } // geser kanan
-        if(touchStartX - touchEndX > swipeThreshold){ sidebar.classList.remove("active"); } // geser kiri
+        // Swipe kanan -> buka sidebar
+        if(touchEndX - touchStartX > swipeThreshold){ sidebar.classList.add("active"); }
+
+        // Swipe kiri -> tutup sidebar
+        if(touchStartX - touchEndX > swipeThreshold){ sidebar.classList.remove("active"); }
     }
 </script>
 
