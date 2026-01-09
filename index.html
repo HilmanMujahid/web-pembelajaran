@@ -15,6 +15,7 @@
         background: linear-gradient(135deg, #3740ff, #7b3cff);
         display: flex;
         min-height: 100vh;
+        overflow-x: hidden;
         overflow-y: auto;
         color: white;
     }
@@ -29,16 +30,12 @@
         padding: 25px 20px;
         box-shadow: 3px 0 12px rgba(0,0,0,0.25);
         position: fixed;
-        left: 0;
         top: 0;
         bottom: 0;
+        left: 0;
+        transform: translateX(0);
         transition: transform 0.3s ease;
         z-index: 1000;
-    }
-
-    /* DEFAULT: desktop selalu tampil */
-    .sidebar {
-        transform: translateX(0);
     }
 
     .sidebar h1 {
@@ -74,7 +71,7 @@
         flex: 1;
         padding: 40px 60px;
         margin-left: 250px;
-        transition: margin-left 0.4s;
+        transition: margin-left 0.3s;
         overflow-y: auto;
     }
 
@@ -119,7 +116,7 @@
         font-size: 28px;
         cursor: pointer;
         margin-bottom: 20px;
-        display: none; /* default desktop hide */
+        display: none;
         padding: 10px;
         background: rgba(255,255,255,0.2);
         border-radius: 10px;
@@ -129,18 +126,12 @@
        RESPONSIVE MOBILE
     ======================= */
     @media (max-width: 768px) {
-
-        body {
-            flex-direction: column;
-            overflow-x: hidden;
-        }
-
         .sidebar {
-            transform: translateX(-260px); /* default hidden */
+            transform: translateX(-260px);
         }
 
         .sidebar.active {
-            transform: translateX(0); /* tampil saat toggle */
+            transform: translateX(0);
         }
 
         .content {
@@ -149,7 +140,7 @@
         }
 
         .hamburger {
-            display: inline-block; /* tampil di HP */
+            display: inline-block;
         }
 
         .profile-box {
@@ -195,10 +186,8 @@
             padding: 14px;
         }
     }
-
 </style>
 </head>
-
 <body>
 
 <!-- SIDEBAR -->
@@ -206,21 +195,18 @@
     <h1>E-MU</h1>
     <b>E-Learning SMK Muhammadiyah Garut</b>
 
-    <div class="menu-item active" onclick="closeSidebarMobile()">
-        🏠 Profil Sekolah
-    </div>
+    <div class="menu-item active" onclick="closeSidebarMobile()">🏠 Profil Sekolah</div>
     <div class="menu-item" onclick="goTo('kelas.html')">📚 Kelas</div>
 </div>
 
 <!-- CONTENT -->
 <div class="content" id="content">
-    <span class="hamburger" onclick="toggleSidebar()">☰ Menu</span>
+    <span class="hamburger" id="hamburger">☰ Menu</span>
 
     <h1>Profil Sekolah</h1>
 
     <div class="profile-box">
         <img src="logo smk muhamadiah.jpeg" class="profile-image" alt="Logo SMK">
-
         <h2>SMK Muhammadiyah Garut</h2>
         <p><b>Alamat:</b> Jalan Jendral Ahmad Yani No.257, Wetan, Ciwalen, Kec. Garut Kota, Kabupaten Garut, Jawa Barat 44111 </p>
         <p><b>Telepon:</b> 087822268836</p>
@@ -237,54 +223,80 @@
         </ul>
 
         <h3>Visi</h3>
-        <p>
-        Menjadi SMK yang menghasilkan lulusan berprestasi, mandiri, dan berkarakter Islami
-        untuk mewujudkan generasi muda yang sukses di dunia akademik, profesional,
-        dan spiritual.
-        </p>
+        <p>Menjadi SMK yang menghasilkan lulusan berprestasi, mandiri, dan berkarakter Islami...</p>
 
         <h3>Misi</h3>
         <ul style="text-align:left; line-height:1.7;">
-            <li>Melaksanakan pembelajaran berkualitas dan berorientasi pada pencapaian kompetensi sesuai bidang keahlian.</li>
-            <li>Mengembangkan potensi siswa secara optimal melalui kegiatan ekstrakurikuler dan pembinaan karakter.</li>
-            <li>Menanamkan nilai-nilai agama Islam dan budaya luhur dalam setiap aspek kehidupan sekolah.</li>
-            <li>Menyiapkan lulusan yang siap kerja, berjiwa wirausaha, dan mampu bersaing di dunia kerja.</li>
-            <li>Membangun kerja sama yang sinergis dengan dunia usaha dan industri.</li>
-            <li>Menciptakan lingkungan sekolah yang kondusif, aman, dan nyaman.</li>
-            <li>Meningkatkan profesionalisme guru dan tenaga kependidikan.</li>
+            <li>Melaksanakan pembelajaran berkualitas sesuai kompetensi</li>
+            <li>Mengembangkan potensi siswa melalui ekstrakurikuler dan karakter</li>
+            <li>Menanamkan nilai-nilai agama Islam</li>
+            <li>Lulusan siap kerja & wirausaha</li>
+            <li>Kerja sama sinergis dengan industri</li>
+            <li>Menciptakan lingkungan aman & nyaman</li>
+            <li>Meningkatkan profesionalisme guru & tenaga kependidikan</li>
         </ul>
 
         <h3>Tujuan Penggunaan E-Learning</h3>
-        <p>
-        <strong>MU-Learning SMK Muhammadiyah Garut</strong> dikembangkan sebagai media
-        pembelajaran digital untuk mendukung proses belajar mengajar agar lebih fleksibel,
-        interaktif, dan sesuai dengan perkembangan teknologi pendidikan.
-        </p>
+        <p><strong>MU-Learning SMK Muhammadiyah Garut</strong> sebagai media pembelajaran digital interaktif.</p>
 
         <a href="kelas.html" class="btn-kelas">➡ Masuk ke Kelas</a>
     </div>
 </div>
 
 <script>
-    /* Toggle sidebar mobile */
-    function toggleSidebar() {
-        document.getElementById("sidebar").classList.toggle("active");
-    }
+    const sidebar = document.getElementById("sidebar");
+    const hamburger = document.getElementById("hamburger");
 
-    function goTo(page) {
-        window.location.href = page;
-    }
+    // Toggle sidebar via hamburger
+    hamburger.addEventListener("click", () => {
+        sidebar.classList.toggle("active");
+    });
 
-    /* Tutup sidebar saat klik konten (HP) */
-    document.getElementById("content").addEventListener("click", function () {
-        if (window.innerWidth <= 768) {
-            document.getElementById("sidebar").classList.remove("active");
+    // Close sidebar saat klik konten
+    document.getElementById("content").addEventListener("click", () => {
+        if(window.innerWidth <= 768){
+            sidebar.classList.remove("active");
         }
     });
 
-    function closeSidebarMobile() {
-        if (window.innerWidth <= 768) {
-            document.getElementById("sidebar").classList.remove("active");
+    function goTo(page){
+        window.location.href = page;
+    }
+
+    function closeSidebarMobile(){
+        if(window.innerWidth <= 768){
+            sidebar.classList.remove("active");
+        }
+    }
+
+    // =========================
+    // SWIPE GESTURE
+    // =========================
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleGesture();
+    });
+
+    function handleGesture() {
+        const screenWidth = window.innerWidth;
+        if(screenWidth > 768) return; // hanya mobile
+        const swipeThreshold = 50; // minimal px untuk swipe
+
+        // Swipe dari kiri ke kanan -> buka sidebar
+        if(touchEndX - touchStartX > swipeThreshold){
+            sidebar.classList.add("active");
+        }
+
+        // Swipe dari kanan ke kiri -> tutup sidebar
+        if(touchStartX - touchEndX > swipeThreshold){
+            sidebar.classList.remove("active");
         }
     }
 </script>
