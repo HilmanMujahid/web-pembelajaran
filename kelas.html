@@ -6,122 +6,111 @@
 <title>Kelas | E-Learning</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #3740ff, #7b3cff);
-        height: 100vh;
-        display: flex;
-        overflow: hidden;
-        color: white;
-    }
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #3740ff, #7b3cff);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    color: white;
+}
 
-    /* SIDEBAR */
-    .sidebar {
-        width: 230px;
-        background: rgba(0,0,50,0.45);
-        backdrop-filter: blur(10px);
-        padding: 25px 20px;
-        box-shadow: 3px 0 12px rgba(0,0,0,0.25);
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        transition: .3s;
-        z-index: 1000;
-    }
+.sidebar {
+    width: 230px;
+    background: rgba(0,0,50,0.95);
+    backdrop-filter: blur(10px);
+    padding: 25px 20px;
+    box-shadow: 3px 0 12px rgba(0,0,0,0.25);
+    position: fixed;
+    left: -250px; /* start hidden */
+    top: 0;
+    bottom: 0;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
 
-    .sidebar.hidden {
-        transform: translateX(-250px);
-    }
+.sidebar.show {
+    transform: translateX(250px); /* tampil */
+}
 
-    .sidebar h2, .sidebar b {
-        color: white;
-    }
+.sidebar h1, .sidebar b {
+    color: white;
+}
 
-    .menu-item {
-        padding: 12px 15px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        cursor: pointer;
-        transition: .3s;
-        margin-bottom: 10px;
-    }
+.menu-item {
+    padding: 12px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: .3s;
+    margin-bottom: 10px;
+}
 
-    .menu-item:hover,
-    .menu-item.active {
-        background: #5468ff;
-    }
+.menu-item:hover,
+.menu-item.active {
+    background: #5468ff;
+}
 
-    /* CONTENT */
-    .content {
-        flex: 1;
-        margin-left: 230px;
-        padding: 30px 50px;
-        transition: .3s;
-        overflow-y: auto;
-    }
+.content {
+    flex: 1;
+    margin-left: 0;
+    padding: 30px 20px;
+    transition: .3s;
+    overflow-y: auto;
+    z-index: 1;
+    position: relative;
+}
 
-    .content.full {
-        margin-left: 0;
-    }
+.hamburger {
+    font-size: 28px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-block;
+    padding: 10px;
+    z-index: 1100; /* lebih tinggi dari sidebar */
+    position: relative;
+}
 
-    .hamburger {
-        font-size: 28px;
-        cursor: pointer;
-        margin-bottom: 20px;
-        display: none; /* Default desktop hidden */
-        padding: 10px;
-    }
+.grade-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
 
-    /* CARD */
-    .grade-container {
-        display: flex;
-        gap: 30px;
-        margin-top: 40px;
-        flex-wrap: wrap;
-    }
+.grade-card {
+    background: rgba(255,255,255,0.2);
+    padding: 40px 50px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    font-size: 26px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+    text-align: center;
+    flex: 1 1 150px;
+}
 
-    .grade-card {
-        background: rgba(255,255,255,0.2);
-        padding: 40px 50px;
-        border-radius: 20px;
-        backdrop-filter: blur(6px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-        font-size: 26px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: .3s;
-        text-align: center;
-        flex: 1 1 150px;
-    }
+.grade-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255,255,255,0.28);
+}
 
-    .grade-card:hover {
-        transform: translateY(-8px);
-        background: rgba(255,255,255,0.28);
-    }
-
-    /* RESPONSIVE MOBILE */
-    @media (max-width: 768px) {
-        .sidebar {
-            transform: translateX(-250px);
-        }
-        .hamburger {
-            display: inline-block;
-        }
-        .content {
-            margin-left: 0;
-            padding: 20px;
-        }
-    }
+/* MOBILE */
+@media (max-width: 768px) {
+    .hamburger { display: inline-block; }
+    .sidebar { left: -250px; }
+}
 </style>
 </head>
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar hidden" id="sidebar">
+<div class="sidebar" id="sidebar">
     <h1>E-MU</h1>
     <b>E-Learning SMK Muhammadiyah Garut</b>
 
@@ -131,7 +120,7 @@
 
 <!-- CONTENT -->
 <div class="content" id="content">
-    <span class="hamburger" onclick="toggleSidebar()">☰ Menu</span>
+    <span class="hamburger" id="hamburger">☰ Menu</span>
 
     <h1>Pilih Tingkat Kelas</h1>
 
@@ -147,17 +136,39 @@ function goTo(page) {
     window.location.href = page;
 }
 
-// Toggle sidebar
-function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("hidden");
-}
-
-// Tutup sidebar jika klik Kelas di sidebar
-document.getElementById("kelasSidebar").addEventListener("click", function() {
-    if(window.innerWidth <= 768){ // hanya untuk mobile
-        document.getElementById("sidebar").classList.add("hidden");
-    }
+// Toggle sidebar via hamburger
+const sidebar = document.getElementById('sidebar');
+const hamburger = document.getElementById('hamburger');
+hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('show');
 });
+
+// Close sidebar if klik Kelas
+document.getElementById("kelasSidebar").addEventListener("click", function() {
+    sidebar.classList.remove('show');
+});
+
+// SWIPE FEATURE
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, false);
+
+function handleSwipe() {
+    if(touchEndX - touchStartX > 50){ // swipe ke kanan
+        sidebar.classList.add('show');
+    }
+    if(touchStartX - touchEndX > 50){ // swipe ke kiri
+        sidebar.classList.remove('show');
+    }
+}
 </script>
 
 </body>
