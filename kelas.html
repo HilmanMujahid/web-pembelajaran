@@ -3,26 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard E-Learning</title>
+<title>Kelas | E-Learning</title>
 
 <style>
-    /* =======================
-       RESET & BODY
-    ======================= */
     body {
         margin: 0;
         font-family: 'Poppins', sans-serif;
         background: linear-gradient(135deg, #3740ff, #7b3cff);
+        height: 100vh;
         display: flex;
-        min-height: 100vh;
-        overflow-x: hidden;
-        overflow-y: auto;
+        overflow: hidden;
         color: white;
     }
 
-    /* =======================
-       SIDEBAR
-    ======================= */
+    /* SIDEBAR */
     .sidebar {
         width: 230px;
         background: rgba(0,0,50,0.45);
@@ -30,22 +24,19 @@
         padding: 25px 20px;
         box-shadow: 3px 0 12px rgba(0,0,0,0.25);
         position: fixed;
+        left: 0;
         top: 0;
         bottom: 0;
-        left: 0;
-        transform: translateX(0);
-        transition: transform 0.3s ease;
+        transition: .3s;
         z-index: 1000;
     }
 
-    .sidebar h1 {
-        margin-bottom: 10px;
-        color: white;
+    .sidebar.hidden {
+        transform: translateX(-250px);
     }
 
-    .sidebar b {
-        font-size: 14px;
-        line-height: 1.5;
+    .sidebar h2, .sidebar b {
+        color: white;
     }
 
     .menu-item {
@@ -55,7 +46,7 @@
         align-items: center;
         gap: 12px;
         cursor: pointer;
-        transition: 0.3s;
+        transition: .3s;
         margin-bottom: 10px;
     }
 
@@ -64,126 +55,65 @@
         background: #5468ff;
     }
 
-    /* =======================
-       CONTENT
-    ======================= */
+    /* CONTENT */
     .content {
         flex: 1;
-        padding: 40px 60px;
-        margin-left: 250px;
-        transition: margin-left 0.3s;
+        margin-left: 230px;
+        padding: 30px 50px;
+        transition: .3s;
         overflow-y: auto;
     }
 
-    .profile-box {
-        background: rgba(255,255,255,0.15);
-        padding: 25px;
-        border-radius: 15px;
-        backdrop-filter: blur(6px);
-        margin-top: 20px;
+    .content.full {
+        margin-left: 0;
     }
 
-    .profile-image {
-        width: 180px;
-        height: 180px;
-        border-radius: 15px;
-        object-fit: cover;
-        border: 4px solid white;
-    }
-
-    .btn-kelas {
-        display: inline-block;
-        margin-top: 25px;
-        padding: 12px 18px;
-        font-size: 16px;
-        font-weight: bold;
-        background: #5468ff;
-        color: white;
-        border-radius: 10px;
-        text-decoration: none;
-        transition: 0.3s;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .btn-kelas:hover {
-        background: #6e7dff;
-    }
-
-    /* =======================
-       HAMBURGER
-    ======================= */
     .hamburger {
         font-size: 28px;
         cursor: pointer;
         margin-bottom: 20px;
-        display: none;
+        display: none; /* Default desktop hidden */
         padding: 10px;
-        background: rgba(255,255,255,0.2);
-        border-radius: 10px;
     }
 
-    /* =======================
-       RESPONSIVE MOBILE
-    ======================= */
+    /* CARD */
+    .grade-container {
+        display: flex;
+        gap: 30px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+
+    .grade-card {
+        background: rgba(255,255,255,0.2);
+        padding: 40px 50px;
+        border-radius: 20px;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        font-size: 26px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .3s;
+        text-align: center;
+        flex: 1 1 150px;
+    }
+
+    .grade-card:hover {
+        transform: translateY(-8px);
+        background: rgba(255,255,255,0.28);
+    }
+
+    /* RESPONSIVE MOBILE */
     @media (max-width: 768px) {
         .sidebar {
-            transform: translateX(-260px);
+            transform: translateX(-250px);
         }
-
-        .sidebar.active {
-            transform: translateX(0);
-        }
-
-        .content {
-            margin-left: 0;
-            padding: 20px;
-        }
-
         .hamburger {
             display: inline-block;
         }
-
-        .profile-box {
+        .content {
+            margin-left: 0;
             padding: 20px;
-            border-radius: 12px;
-        }
-
-        .profile-image {
-            width: 120px;
-            height: 120px;
-            display: block;
-            margin: 0 auto 15px;
-        }
-
-        h1 {
-            font-size: 22px;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 20px;
-            text-align: center;
-        }
-
-        h3 {
-            font-size: 17px;
-            margin-top: 20px;
-        }
-
-        p, li {
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        ul {
-            padding-left: 18px;
-        }
-
-        .btn-kelas {
-            width: 100%;
-            text-align: center;
-            font-size: 15px;
-            padding: 14px;
         }
     }
 </style>
@@ -191,114 +121,43 @@
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
+<div class="sidebar hidden" id="sidebar">
     <h1>E-MU</h1>
     <b>E-Learning SMK Muhammadiyah Garut</b>
 
-    <div class="menu-item active" onclick="closeSidebarMobile()">🏠 Profil Sekolah</div>
-    <div class="menu-item" onclick="goTo('kelas.html')">📚 Kelas</div>
+    <div class="menu-item" onclick="goTo('index.html')">🏠 Profil Sekolah</div>
+    <div class="menu-item" id="kelasSidebar">📚 Kelas</div>
 </div>
 
 <!-- CONTENT -->
 <div class="content" id="content">
-    <span class="hamburger" id="hamburger">☰ Menu</span>
+    <span class="hamburger" onclick="toggleSidebar()">☰ Menu</span>
 
-    <h1>Profil Sekolah</h1>
+    <h1>Pilih Tingkat Kelas</h1>
 
-    <div class="profile-box">
-        <img src="logo smk muhamadiah.jpeg" class="profile-image" alt="Logo SMK">
-        <h2>SMK Muhammadiyah Garut</h2>
-        <p><b>Alamat:</b> Jalan Jendral Ahmad Yani No.257, Wetan, Ciwalen, Kec. Garut Kota, Kabupaten Garut, Jawa Barat 44111 </p>
-        <p><b>Telepon:</b> 087822268836</p>
-        <p><b>Email:</b> info@smkmuhammadiyahgarut.sch.id</p>
-
-        <h3>Program Keahlian</h3>
-        <ul style="text-align:left; line-height:1.7;">
-            <li>Pengembangan Perangkat Lunak dan Gim (PPLG)</li>
-            <li>Otomatisasi dan Tata Kelola Perkantoran (OTKP)</li>
-            <li>Teknik dan Bisnis Sepeda Motor (TBSM)</li>
-            <li>Akuntansi dan Keuangan Lembaga (AKL)</li>
-            <li>Bisnis Daring dan Pemasaran (BDP)</li>
-            <li>Teknik Kendaraan Ringan Otomotif (TKRO)</li>
-        </ul>
-
-        <h3>Visi</h3>
-        <p>Menjadi SMK yang menghasilkan lulusan berprestasi, mandiri, dan berkarakter Islami...</p>
-
-        <h3>Misi</h3>
-        <ul style="text-align:left; line-height:1.7;">
-            <li>Melaksanakan pembelajaran berkualitas sesuai kompetensi</li>
-            <li>Mengembangkan potensi siswa melalui ekstrakurikuler dan karakter</li>
-            <li>Menanamkan nilai-nilai agama Islam</li>
-            <li>Lulusan siap kerja & wirausaha</li>
-            <li>Kerja sama sinergis dengan industri</li>
-            <li>Menciptakan lingkungan aman & nyaman</li>
-            <li>Meningkatkan profesionalisme guru & tenaga kependidikan</li>
-        </ul>
-
-        <h3>Tujuan Penggunaan E-Learning</h3>
-        <p><strong>MU-Learning SMK Muhammadiyah Garut</strong> sebagai media pembelajaran digital interaktif.</p>
-
-        <a href="kelas.html" class="btn-kelas">➡ Masuk ke Kelas</a>
+    <div class="grade-container">
+        <div class="grade-card" onclick="goTo('kelas10.html')">Kelas 10</div>
+        <div class="grade-card" onclick="goTo('kelas11.html')">Kelas 11</div>
+        <div class="grade-card" onclick="goTo('kelas12.html')">Kelas 12</div>
     </div>
 </div>
 
 <script>
-    const sidebar = document.getElementById("sidebar");
-    const hamburger = document.getElementById("hamburger");
+function goTo(page) {
+    window.location.href = page;
+}
 
-    // Toggle sidebar via hamburger
-    hamburger.addEventListener("click", () => {
-        sidebar.classList.toggle("active");
-    });
+// Toggle sidebar
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
 
-    // Close sidebar saat klik konten
-    document.getElementById("content").addEventListener("click", () => {
-        if(window.innerWidth <= 768){
-            sidebar.classList.remove("active");
-        }
-    });
-
-    function goTo(page){
-        window.location.href = page;
+// Tutup sidebar jika klik Kelas di sidebar
+document.getElementById("kelasSidebar").addEventListener("click", function() {
+    if(window.innerWidth <= 768){ // hanya untuk mobile
+        document.getElementById("sidebar").classList.add("hidden");
     }
-
-    function closeSidebarMobile(){
-        if(window.innerWidth <= 768){
-            sidebar.classList.remove("active");
-        }
-    }
-
-    // =========================
-    // SWIPE GESTURE
-    // =========================
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    document.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    document.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleGesture();
-    });
-
-    function handleGesture() {
-        const screenWidth = window.innerWidth;
-        if(screenWidth > 768) return; // hanya mobile
-        const swipeThreshold = 50; // minimal px untuk swipe
-
-        // Swipe dari kiri ke kanan -> buka sidebar
-        if(touchEndX - touchStartX > swipeThreshold){
-            sidebar.classList.add("active");
-        }
-
-        // Swipe dari kanan ke kiri -> tutup sidebar
-        if(touchStartX - touchEndX > swipeThreshold){
-            sidebar.classList.remove("active");
-        }
-    }
+});
 </script>
 
 </body>
