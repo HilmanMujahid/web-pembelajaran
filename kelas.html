@@ -16,6 +16,7 @@
         color: white;
     }
 
+    /* SIDEBAR */
     .sidebar {
         width: 230px;
         background: rgba(0,0,50,0.45);
@@ -27,14 +28,14 @@
         top: 0;
         bottom: 0;
         transition: .3s;
+        z-index: 1000;
     }
 
     .sidebar.hidden {
         transform: translateX(-250px);
     }
 
-    .sidebar h2 {
-        margin-bottom: 40px;
+    .sidebar h2, .sidebar b {
         color: white;
     }
 
@@ -54,14 +55,7 @@
         background: #5468ff;
     }
 
-    .hamburger {
-        font-size: 28px;
-        cursor: pointer;
-        margin-bottom: 20px;
-        display: inline-block;
-        padding: 10px;
-    }
-
+    /* CONTENT */
     .content {
         flex: 1;
         margin-left: 230px;
@@ -74,10 +68,20 @@
         margin-left: 0;
     }
 
+    .hamburger {
+        font-size: 28px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        display: none; /* Default desktop hidden */
+        padding: 10px;
+    }
+
+    /* CARD */
     .grade-container {
         display: flex;
         gap: 30px;
         margin-top: 40px;
+        flex-wrap: wrap;
     }
 
     .grade-card {
@@ -91,27 +95,38 @@
         cursor: pointer;
         transition: .3s;
         text-align: center;
+        flex: 1 1 150px;
     }
 
     .grade-card:hover {
         transform: translateY(-8px);
         background: rgba(255,255,255,0.28);
     }
+
+    /* RESPONSIVE MOBILE */
+    @media (max-width: 768px) {
+        .sidebar {
+            transform: translateX(-250px);
+        }
+        .hamburger {
+            display: inline-block;
+        }
+        .content {
+            margin-left: 0;
+            padding: 20px;
+        }
+    }
 </style>
 </head>
-
 <body>
 
 <!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
+<div class="sidebar hidden" id="sidebar">
     <h1>E-MU</h1>
     <b>E-Learning SMK Muhammadiyah Garut</b>
 
-    <div class="menu-item "onclick="goTo('index.html')">🏠 Profil Sekolah</div>
-    <div class="menu-item active">📚 Kelas</div>
-   
-
-
+    <div class="menu-item" onclick="goTo('index.html')">🏠 Profil Sekolah</div>
+    <div class="menu-item" id="kelasSidebar">📚 Kelas</div>
 </div>
 
 <!-- CONTENT -->
@@ -132,12 +147,18 @@ function goTo(page) {
     window.location.href = page;
 }
 
+// Toggle sidebar
 function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("hidden");
-    document.getElementById("content").classList.toggle("full");
 }
+
+// Tutup sidebar jika klik Kelas di sidebar
+document.getElementById("kelasSidebar").addEventListener("click", function() {
+    if(window.innerWidth <= 768){ // hanya untuk mobile
+        document.getElementById("sidebar").classList.add("hidden");
+    }
+});
 </script>
 
 </body>
 </html>
-
