@@ -6,16 +6,22 @@
 <title>Dashboard E-Learning</title>
 
 <style>
+    /* =======================
+       RESET & BODY
+    ======================= */
     body {
         margin: 0;
         font-family: 'Poppins', sans-serif;
         background: linear-gradient(135deg, #3740ff, #7b3cff);
         display: flex;
-        height: 100vh;
-        overflow: hidden;
+        min-height: 100vh; /* agar bisa scroll jika konten lebih panjang */
+        overflow-y: auto;   /* scroll vertikal aktif */
         color: white;
     }
 
+    /* =======================
+       SIDEBAR
+    ======================= */
     .sidebar {
         width: 230px;
         background: rgba(0,0,50,0.45);
@@ -26,16 +32,22 @@
         left: 0;
         top: 0;
         bottom: 0;
-        transition: .3s;
+        transition: 0.3s;
+        z-index: 1000;
     }
 
     .sidebar.hidden {
         transform: translateX(-250px);
     }
 
-    .sidebar h2 {
-        margin-bottom: 40px;
+    .sidebar h1 {
+        margin-bottom: 10px;
         color: white;
+    }
+
+    .sidebar b {
+        font-size: 14px;
+        line-height: 1.5;
     }
 
     .menu-item {
@@ -45,7 +57,7 @@
         align-items: center;
         gap: 12px;
         cursor: pointer;
-        transition: .3s;
+        transition: 0.3s;
         margin-bottom: 10px;
     }
 
@@ -54,14 +66,9 @@
         background: #5468ff;
     }
 
-    .hamburger {
-        font-size: 28px;
-        cursor: pointer;
-        margin-bottom: 20px;
-        display: inline-block;
-        padding: 10px;
-    }
-
+    /* =======================
+       CONTENT
+    ======================= */
     .content {
         flex: 1;
         padding: 40px 60px;
@@ -108,103 +115,86 @@
         background: #6e7dff;
     }
 
-    @media (max-width: 768px) {
-        .content {
-            margin-left: 0;
-            padding: 25px;
-        }
-    }
-/* =====================
-   RESPONSIVE MOBILE
-===================== */
-@media (max-width: 768px) {
-
-    body {
-        flex-direction: column;
-        height: auto;
-        overflow-x: hidden;
-    }
-
-    /* Sidebar tersembunyi saat awal */
-    .sidebar {
-        width: 240px;
-        z-index: 1000;
-        transform: translateX(-260px);
-    }
-
-    /* Sidebar muncul saat tombol menu diklik */
-    .sidebar.hidden {
-        transform: translateX(-260px);
-    }
-
-    .sidebar.active {
-        transform: translateX(0);
-    }
-
-    /* Konten full */
-    .content {
-        margin-left: 0;
-        padding: 20px;
-    }
-
-    .content.full {
-        margin-left: 0;
-    }
-
-    /* Hamburger */
+    /* =======================
+       HAMBURGER
+    ======================= */
     .hamburger {
-        font-size: 26px;
-        padding: 8px 12px;
+        font-size: 28px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        display: inline-block;
+        padding: 10px;
         background: rgba(255,255,255,0.2);
         border-radius: 10px;
-        display: inline-block;
-        margin-bottom: 15px;
     }
 
-    /* Profil */
-    .profile-box {
-        padding: 20px;
-        border-radius: 12px;
-    }
+    /* =======================
+       RESPONSIVE MOBILE
+    ======================= */
+    @media (max-width: 768px) {
+        body {
+            flex-direction: column;
+            overflow-x: hidden;
+        }
 
-    .profile-image {
-        width: 120px;
-        height: 120px;
-        display: block;
-        margin: 0 auto 15px;
-    }
+        .sidebar {
+            width: 240px;
+            transform: translateX(-260px);
+            position: fixed;
+        }
 
-    h1 {
-        font-size: 22px;
-        text-align: center;
-    }
+        .sidebar.active {
+            transform: translateX(0);
+        }
 
-    h2 {
-        font-size: 20px;
-        text-align: center;
-    }
+        .content {
+            margin-left: 0;
+            padding: 20px;
+        }
 
-    h3 {
-        font-size: 17px;
-        margin-top: 20px;
-    }
+        .profile-box {
+            padding: 20px;
+            border-radius: 12px;
+        }
 
-    p, li {
-        font-size: 14px;
-        line-height: 1.6;
-    }
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            display: block;
+            margin: 0 auto 15px;
+        }
 
-    ul {
-        padding-left: 18px;
-    }
+        h1 {
+            font-size: 22px;
+            text-align: center;
+        }
 
-    .btn-kelas {
-        width: 100%;
-        text-align: center;
-        font-size: 15px;
-        padding: 14px;
+        h2 {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 17px;
+            margin-top: 20px;
+        }
+
+        p, li {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 18px;
+        }
+
+        .btn-kelas {
+            width: 100%;
+            text-align: center;
+            font-size: 15px;
+            padding: 14px;
+        }
     }
-}
 
 </style>
 </head>
@@ -217,11 +207,9 @@
     <b>E-Learning SMK Muhammadiyah Garut</b>
 
     <div class="menu-item active" onclick="closeSidebarMobile()">
-    🏠 Profil Sekolah
-</div>
+        🏠 Profil Sekolah
+    </div>
     <div class="menu-item" onclick="goTo('kelas.html')">📚 Kelas</div>
-
-
 </div>
 
 <!-- CONTENT -->
@@ -231,7 +219,7 @@
     <h1>Profil Sekolah</h1>
 
     <div class="profile-box">
-        <img src="logo smk muhamadiah.jpeg" class="profile-image">
+        <img src="logo smk muhamadiah.jpeg" class="profile-image" alt="Logo SMK">
 
         <h2>SMK Muhammadiyah Garut</h2>
         <p><b>Alamat:</b> Jalan Jendral Ahmad Yani No.257, Wetan, Ciwalen, Kec. Garut Kota, Kabupaten Garut, Jawa Barat 44111 </p>
@@ -265,7 +253,7 @@
             <li>Menciptakan lingkungan sekolah yang kondusif, aman, dan nyaman.</li>
             <li>Meningkatkan profesionalisme guru dan tenaga kependidikan.</li>
         </ul>
-        
+
         <h3>Tujuan Penggunaan E-Learning</h3>
         <p>
         <strong>MU-Learning SMK Muhammadiyah Garut</strong> dikembangkan sebagai media
@@ -278,37 +266,28 @@
 </div>
 
 <script>
-function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("active");
-}
-
-function goTo(page) {
-    window.location.href = page;
-}
-
-/* Tutup sidebar saat klik konten (khusus HP) */
-document.getElementById("content").addEventListener("click", function () {
-    if (window.innerWidth <= 768) {
-        document.getElementById("sidebar").classList.remove("active");
+    /* Toggle sidebar mobile */
+    function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("active");
     }
-});
 
-/* Tutup sidebar saat klik menu sidebar */
-function closeSidebarMobile() {
-    if (window.innerWidth <= 768) {
-        document.getElementById("sidebar").classList.remove("active");
+    function goTo(page) {
+        window.location.href = page;
     }
-}
+
+    /* Tutup sidebar saat klik konten (HP) */
+    document.getElementById("content").addEventListener("click", function () {
+        if (window.innerWidth <= 768) {
+            document.getElementById("sidebar").classList.remove("active");
+        }
+    });
+
+    function closeSidebarMobile() {
+        if (window.innerWidth <= 768) {
+            document.getElementById("sidebar").classList.remove("active");
+        }
+    }
 </script>
-
-
-
 
 </body>
 </html>
-
-
-
-
-
-
